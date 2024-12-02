@@ -90,7 +90,7 @@ class CreateResumeScreen extends StatelessWidget {
         children: const [
           Icon(Icons.search, color: darkGreyColor),
           AppText(
-            text: " Pick your sections, fill in the details! ",
+            text: " Pick  sections, fill in the details! ",
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: textColor,
