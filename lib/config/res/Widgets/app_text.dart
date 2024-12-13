@@ -8,11 +8,12 @@ class AppText extends StatelessWidget {
          this.fontWeight,
         this.textAlign,
          this.color = Colors.black,
-        this.maxLines,
+        this.maxLines, this.overflow,
       });
   final String text;
   final double? fontSize;
   final FontWeight? fontWeight;
+  final TextOverflow? overflow;
   final Color color ;
   final TextAlign? textAlign;
   final int? maxLines;
@@ -26,8 +27,9 @@ class AppText extends StatelessWidget {
           fontSize: fontSize,
           fontWeight: fontWeight,
           color: color,
-          fontFamily: "Roboto"
+          fontFamily: "Roboto",
       ),
+      overflow: overflow ,
     );
   }
 }

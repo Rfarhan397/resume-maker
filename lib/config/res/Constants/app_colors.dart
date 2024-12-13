@@ -9,3 +9,4 @@ const Color subTitleColor = Color(0xffCACACA);
 const Color tileColor = Color(0xffD9D9D9);
 const Color darkGreyColor = Color(0xff959595);
 const Color whiteColor = Colors.white;
+const Color greyColor = Color(0xffDCDCDC);

@@ -10,6 +10,8 @@ class AppAssets{
   static const String onboard1 = "assets/images/onboard_1.png";
   static const String onboard2 = "assets/images/onboard_2.png";
   static const String onboard3 = "assets/images/onboard_3.png";
+  static const String edit = "assets/images/edit.webp";
+  static const String delete = "assets/images/delete.webp";
 
 }
 

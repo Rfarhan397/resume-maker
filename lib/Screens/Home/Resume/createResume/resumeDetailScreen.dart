@@ -1,15 +1,27 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:resumemaker/config/components/appBackButton/appBackButtonWidget.dart';
 import 'package:resumemaker/config/res/Constants/app_colors.dart';
+import 'package:resumemaker/config/res/Widgets/app_button.dart';
 import 'package:resumemaker/config/res/Widgets/app_text.dart';
 import 'package:resumemaker/config/res/Widgets/app_text_field.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../config/res/routes/routes_name.dart';
+
 class ResumeDetailScreen extends StatelessWidget {
+
   const ResumeDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final checkedItems = ModalRoute.of(context)?.settings.arguments as List<Map<String, dynamic>>? ?? [];
+
+// Debugging: Check the contents of checkedItems
+    print(checkedItems); // This will print the received data in the console
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
@@ -64,10 +76,24 @@ class ResumeDetailScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _tabItem(Icons.person, "Personal Details", isActive: true),
-                _tabItem(Icons.school, "Education"),
-                _tabItem(Icons.work, "Experience"),
-                _tabItem(Icons.lightbulb, "Skills"),
+                Container(
+                  height: 10.h,
+                  width: 60.w,
+                  color: Colors.red,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: checkedItems.isEmpty ? 0 : checkedItems.length,
+                    itemBuilder: (context, index) {
+                      final item = checkedItems[index];
+                      return _tabItem(Icons.person, item['title'], isActive: true);
+                    },
+                  ),
+                )
+
+                // _tabItem(Icons.person, "Personal Details", isActive: true),
+                // _tabItem(Icons.school, "Education"),
+                // _tabItem(Icons.work, "Experience"),
+                // _tabItem(Icons.lightbulb, "Skills"),
               ],
             ),
             SizedBox(height: 3.h),
@@ -128,19 +154,16 @@ class ResumeDetailScreen extends StatelessWidget {
             SizedBox(height: 2.h),
             // Next Button
             Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  minimumSize: Size(80.w, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text("Next (1/6)",
-                    style: TextStyle(fontSize: 16)),
-              ),
+              child: AppButton(title: 'Next (1/6)',
+                height: 40,
+                width: 60.w,
+                press: () {
+                  Navigator.pushNamed(
+                    context,
+                    RoutesName.educationForm,);
+              },),
             ),
+
           ],
         ),
       ),
@@ -153,12 +176,10 @@ class ResumeDetailScreen extends StatelessWidget {
       children: [
         Icon(icon, color: isActive ? Colors.amber : Colors.grey),
         SizedBox(height: 1.h),
-        Text(
+        AppText(text:
           label,
-          style: TextStyle(
-            color: isActive ? Colors.amber : Colors.grey,
+            color: isActive ? Colors.amber : Colors.red,
             fontSize: 10.sp,
-          ),
         ),
       ],
     );

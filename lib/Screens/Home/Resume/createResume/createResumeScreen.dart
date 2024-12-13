@@ -45,23 +45,26 @@ class CreateResumeScreen extends StatelessWidget {
       height: 40,
       radius: 20,
       press: () {
-        if (resumeProvider.areRequiredFieldsCompleted()) {
-          Navigator.pushNamed(context, RoutesName.resumeDetailScreen);
-        } else {
-          _showValidationMessage(context);
-        }
+        navigateToNextScreen(
+          context,
+          resumeProvider,
+        );
       },
     );
   }
+  void navigateToNextScreen(BuildContext context, ResumeProvider resumeProvider) {
+    final checkedItems = resumeProvider.infoItems
+        .where((item) => item["isChecked"] == true)
+        .toList();
 
-  void _showValidationMessage(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Please select all required fields."),
-        duration: Duration(seconds: 2),
-      ),
+    Navigator.pushNamed(
+      context,
+      RoutesName.resumeDetailScreen,
+      arguments: checkedItems,
     );
   }
+
+
 
   Widget _buildBody(ResumeProvider resumeProvider) {
     final completedSections = resumeProvider.completedSectionsCount;
@@ -90,7 +93,7 @@ class CreateResumeScreen extends StatelessWidget {
         children: const [
           Icon(Icons.search, color: darkGreyColor),
           AppText(
-            text: " Pick  sections, fill in the details! ",
+            text: " Pick your sections, fill in the details! ",
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color: textColor,

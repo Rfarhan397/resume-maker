@@ -63,13 +63,44 @@ class ResumeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool areRequiredFieldsCompleted() {
-    return infoItems
-        .where((item) => item["isRequired"])
-        .every((item) => item["isChecked"] == true);
-  }
   int get completedSectionsCount {
     return infoItems.where((item) => item["isChecked"] == true).length;
+  }
+
+
+  
+  //education details
+
+
+  String degree = '';
+  String institute = '';
+  String startDate = '';
+  String endDate = '';
+  bool isContinued = false;
+  String description = '';
+
+  void updateField(String key, String value) {
+    switch (key) {
+      case 'degree':
+        degree = value;
+        break;
+      case 'institute':
+        institute = value;
+        break;
+      case 'startDate':
+        startDate = value;
+        break;
+      case 'endDate':
+        endDate = value;
+        break;
+      case 'description':
+        description = value;
+        break;
+      case 'isContinued':
+        isContinued = value.toLowerCase() == 'true';
+        break;
+    }
+    notifyListeners();
   }
 
 }

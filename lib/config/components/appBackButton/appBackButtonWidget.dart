@@ -14,7 +14,7 @@ class AppBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       return GestureDetector(
-        onTap: onTap,
+        onTap:  onTap,
         child: Container(
           margin: const EdgeInsets.all(8),
           padding: const EdgeInsets.all(8),

@@ -9,4 +9,8 @@ class RoutesName {
   static const String bottomNavBarScreen = '/bottom-nav-bar-screen';
   static const String resumeDetailScreen = '/resumeDetailScreen';
   static const String notFound = '/not-found';
+  static const String educationForm = '/EducationFormScreen';
+  static const String educationFormDetail = '/EducationFormDetailScreen';
+  static const String jobTitle = '/jobTitle';
+  static const String careerObjective = '/careerObjective';
 }

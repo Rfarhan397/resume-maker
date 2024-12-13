@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               ),
               // home: const SplashScreen(),
-              initialRoute: RoutesName.splash,
+              initialRoute: RoutesName.bottomNavBarScreen,
               onGenerateRoute: Routes.generateRoute,
               onUnknownRoute: (settings) => MaterialPageRoute(
                   builder: (_) => const NotFoundScreen()

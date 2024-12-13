@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resumemaker/config/res/Constants/app_utils.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../../../config/res/Constants/app_colors.dart';
@@ -31,9 +32,16 @@ class InfoTypeCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
           ),
           value: isChecked,
-          onChanged: (_) => onChecked(),
+          onChanged: (bool? newValue) {
+            if (newValue != null && isRequired && isChecked) {
+              context.showFailedSnackBar('$title field is required and cannot be unchecked.');
+
+
+            } else if (newValue != null && !isRequired) {
+              onChecked();
+            }
+          },
         ),
-        // Expanded Container for Content
         Expanded(
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -54,7 +62,7 @@ class InfoTypeCard extends StatelessWidget {
                     ),
                     if (isRequired)
                       const Padding(
-                        padding: EdgeInsets.only(left: 3,bottom: 8),
+                        padding: EdgeInsets.only(left: 3, bottom: 8),
                         child: Icon(
                           color: Colors.red,
                           Icons.star_rate_rounded,
